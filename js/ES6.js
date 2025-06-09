@@ -252,3 +252,96 @@ for (let i = 0; i < cantautori.length; i++) {
 }
 
 console.log(cantautoriWithO)
+
+// -------
+// NUOVI METODI DEGLI ARRAY INTRODOTTI DA ES6
+
+// FOREACH
+// forEach cicla un array e ci permette di effettuare la stessa operazione
+// su tutti gli elementi
+
+// voglio controllare se nell'array "cantautori" c'è un elemento che si chiama
+// "Renato Zero"
+for (let i = 0; i < cantautori.length; i++) {
+  if (cantautori[i] === 'Renato Zero') {
+    console.log('trovato!')
+  }
+}
+
+// dentro le parentsi di forEach ci va UNA FUNZIONE ("callback")
+cantautori.forEach(function (cantante) {
+  // quello che voglio fare è eseguire questo blocco di codice per ogni elemento
+  // dell'array cantautori
+  //   console.log(cantante) // cantante sarebbe cantautori[i]
+  if (cantante === 'Renato Zero') {
+    console.log('trovato!')
+  }
+})
+
+cantautori.forEach((cantante, i) => {
+  if (cantante === 'Renato Zero') {
+    console.log('trovato! era indice', i) // volendo avete pure la "i", che è
+    // la stessa identica "i" che avreste in un normale for
+  }
+})
+
+// .map()
+// map trasforma un array in un altro array. Map NON cambia la lunghezza dell'array
+// risultante.
+
+// immaginiamo di avere un array di nomi
+const names = ['Luigio', 'Giangiorgio', 'Mariangela', 'Peppe']
+// voglio trasformarlo in un array di lunghezze: [6, 11, 10, 5]
+
+const lunghezze = names.map((nome) => {
+  console.log(nome.length)
+  return nome.length // io devo RITORNARE da questa funzione l'elemento trasformato
+})
+
+// PRO VERSION
+// const lunghezze2 = names.map((nome) => nome.length)
+
+console.log('LUNGHEZZE', lunghezze)
+
+// trasformiamo l'array di nomi in versioni in maiuscolo
+const maiuscoli = names.map((nome) => {
+  return nome.toUpperCase()
+})
+
+console.log('MAIUSCOLI', maiuscoli)
+// map NON ROVINA MAI l'array originale!
+
+// .filter()
+// filter FILTRA un array, e vi genera un NUOVO array di lunghezza uguale o inferiore
+// dell'originale
+
+const nums = [50, 123, 67.6, 300, 499.9]
+// voglio creare un array nuovo con solamente i valori inferiori a 100
+
+const smallNums = nums.filter((numero) => {
+  // qua si mette la condizioni. Gli elementi che PASSANO la condizione
+  // faranno parte del nuovo array "filtrato". I valori che NON passano
+  // la condizione verrano esclusi dall'array filtrato.
+  if (numero < 100) {
+    return true // farà parte di smallNums
+  } else {
+    return false // NON farà parte di smallNums
+  }
+})
+
+// filter NON ROVINA l'array originale, ma crea una COPIA in cui non è detto che
+// vi siano tutti gli elementi dell'array originale
+
+// creiamo con filter l'array di cantautori il cui nome è sotto i 6 caratteri
+const shortCantautori = cantautori.filter((cantante) => {
+  if (cantante.length <= 5) {
+    return true
+  } else {
+    return false
+  }
+})
+
+// PRO-PRO-PRO VERSION
+const shortCantautori2 = cantautori.filter((c) => c.length <= 5)
+
+console.log(shortCantautori)
