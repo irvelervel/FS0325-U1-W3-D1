@@ -166,3 +166,89 @@ const st2 =
 const st3 = `Io mi chiamo ${firstName}, ho ${age} anni, vengo dall'${country}.`
 
 // -------
+
+// RECAP METODI (e proprietà) STRINGHE
+
+const str1 = 'Hello, world!'
+// ogni stringa ha una lunghezza
+str1.length // 13
+// su ogni stringa è possibile effettuare determinate operazioni
+str1.includes('world') // true
+str1.slice(0, 5) // 'Hello'
+str1.charAt(8) // 'o'
+str1.indexOf('w') // 7
+str1.trim() // 'Hello,world!'
+// etc.
+
+// -------
+
+// ARRAY: RECAP
+// un array è una collezione (lista) di valori separati da virgola racchiusi
+// in un'unica entità (variabile). In JS gli array NON hanno una lunghezza prestabilita
+// ed è quindi possibile lavorarci in continuazione leggendo, aggiungendo, spostando,
+// allungando... manipolando l'array in ogni modo.
+
+const arr1 = [30, 45, 2, 78, 99, 100]
+
+// ogni elemento in un array, poichè non possiede una chiave/label/etichetta/nome è
+// identificato unicamente grazie alla sua POSIZIONE (indice): le posizioni degli elementi
+// negli array in JS cominciano dallo 0
+arr1[0] // 30
+arr1[1] // 45
+// ...
+arr1[5] // 100
+// fine dell'array
+arr1[6] // undefined, siamo finiti FUORI dall'array
+
+// operazioni che sappiamo già fare con gli array
+arr1.unshift(3) // inseriamo un elemento in CIMA all'array
+arr1.push(200) // inseriamo un elemento in CODA all'array
+arr1.shift() // RIMUOVE il primo elemento in un array (e ve lo ritorna)
+arr1.pop() // RIMUOVE l'ultimo elemento in un array (e ve lo ritorna)
+arr1.splice(3, 1, 77) // tolgo il 78 e inserisco al suo posto un 77
+// splice richiede: INDICE su cui operare, QUANTI elementi rimuovere, CHE elementi inserire (opzionale)
+arr1.slice(0, 2) // seleziona gli elementi con indice 0 e 1 (il 2 è esclusivo) e li
+// ritorna dentro un nuovo array -> [30, 45]
+// unica proprietà degli array: length
+console.log(arr1.length) // 6
+
+// ora vediamo qualcosa di nuovo:
+
+const cantautori = [
+  'Pupo', // 0
+  'Gino Paoli', // 1
+  'Claudio Baglioni', // 2
+  'Renato Zero', // 3
+  'Zucchero', // 4
+  'Faber', // 5
+]
+
+cantautori.length // 6
+
+// creiamo un NUOVO array in cui inserire solamente stringhe composte dai primi
+// 3 caratteri di ogni cantautore
+// ['Pup', 'Gin', 'Cla', 'Ren', 'Zuc', 'Fab']
+
+const iniziali = []
+
+for (let i = 0; i < cantautori.length; i++) {
+  // entreremo qui dentro 6 volte
+  // la i avrà valore 0 la prima volta, 1 la seconda, 2 la terza etc.
+  iniziali.push(cantautori[i].slice(0, 3))
+}
+
+console.log('INIZIALI', iniziali)
+
+// altra operazioni comunissima: creare un array a partire da un altro,
+// mantenendo solo certi elementi (-filtrando-)
+// mantendo solo i cantautori che finiscono per 'o'
+const cantautoriWithO = []
+
+for (let i = 0; i < cantautori.length; i++) {
+  if (cantautori[i].charAt(cantautori[i].length - 1) === 'o') {
+    // questo cantautore ha il nome che finisce per 'o'
+    cantautoriWithO.push(cantautori[i])
+  }
+}
+
+console.log(cantautoriWithO)
